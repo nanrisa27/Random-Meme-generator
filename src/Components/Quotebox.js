@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../Styles/styles.scss";
 
 class Quotebox extends Component {
     constructor(props){
@@ -33,6 +34,13 @@ class Quotebox extends Component {
      
      }
       handleNewQuote(){
+          const colors=["gray","blue","purple","green","red"];
+          let color= colors[Math.floor(Math.random()* colors.length)];
+          while(color===this.state.color){
+              color= color= colors[Math.floor(Math.random()* colors.length)];
+          }
+
+          this.props.onChangeAppColor("red");
          this.getNewQuote();
      }
     render() {
@@ -43,7 +51,7 @@ class Quotebox extends Component {
              <div className="text">{this.state.quoteText}</div>
              <div className="author">{this.state.quoteAuthor}</div>
             </div>
-             <a href={this.state.tweetUrl}> share on Twitter</a>
+             <a  id ="tweet-quote"href={this.state.tweetUrl}> share on Twitter</a>
              <button onClick={this.handleNewQuote} id="get-new-quote" target="_blank">Get Quote</button>
 
            

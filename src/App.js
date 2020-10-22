@@ -1,17 +1,36 @@
-import React from 'react';
-import './App.css';
-import QuoteBox from "./Components/Quotebox"
+import React, { Component } from 'react'
+import Quotebox from "./Components/Quotebox"
 
 
-function App() {
-  return (
-    <div className="container">
-      <header className="App-header">
-       <QuoteBox/>
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state=({
+      color:"purple"
 
-      </header>
-    </div>
-  );
+    });
+    this.handleColorChange=this.handleColorChange.bind(this);
+  }
+  handleColorChange(color){
+    this.setState({
+      color:color
+    })
+  }
+  render() {
+    return (
+      <div className="app" id={this.state.color}>
+      <Quotebox onChangeAppColor={this.handleColorChange} color={this.state.color}/>
+        
+      </div>
+    )
+  }
 }
 
-export default App;
+
+
+
+
+
+
+
+
